@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 在整合的方法中，mybatis的配置文件无需再进行任何设置，因为在spring的SqlSessionFactoryBean中方已经设置好了 -->
+</configuration>

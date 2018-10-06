@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xgz.mybatis_props.mapper.PropMapper">
+  <resultMap id="BaseResultMap" type="xgz.mybatis_props.model.Prop">
+    <id column="prop_id" jdbcType="VARCHAR" property="propId" />
+    <result column="prop_role" jdbcType="VARCHAR" property="propRole" />
+    <result column="prop_name" jdbcType="VARCHAR" property="propName" />
+    <result column="prop_level" jdbcType="VARCHAR" property="propLevel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    prop_id, prop_role, prop_name, prop_level
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prop
+    where prop_id = #{propId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from prop
+    where prop_id = #{propId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="xgz.mybatis_props.model.Prop">
+    insert into prop (prop_id, prop_role, prop_name, 
+      prop_level)
+    values (#{propId,jdbcType=VARCHAR}, #{propRole,jdbcType=VARCHAR}, #{propName,jdbcType=VARCHAR}, 
+      #{propLevel,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="xgz.mybatis_props.model.Prop">
+    insert into prop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="propId != null">
+        prop_id,
+      </if>
+      <if test="propRole != null">
+        prop_role,
+      </if>
+      <if test="propName != null">
+        prop_name,
+      </if>
+      <if test="propLevel != null">
+        prop_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="propId != null">
+        #{propId,jdbcType=VARCHAR},
+      </if>
+      <if test="propRole != null">
+        #{propRole,jdbcType=VARCHAR},
+      </if>
+      <if test="propName != null">
+        #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propLevel != null">
+        #{propLevel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="xgz.mybatis_props.model.Prop">
+    update prop
+    <set>
+      <if test="propRole != null">
+        prop_role = #{propRole,jdbcType=VARCHAR},
+      </if>
+      <if test="propName != null">
+        prop_name = #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propLevel != null">
+        prop_level = #{propLevel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where prop_id = #{propId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="xgz.mybatis_props.model.Prop">
+    update prop
+    set prop_role = #{propRole,jdbcType=VARCHAR},
+      prop_name = #{propName,jdbcType=VARCHAR},
+      prop_level = #{propLevel,jdbcType=VARCHAR}
+    where prop_id = #{propId,jdbcType=VARCHAR}
+  </update>
+</mapper>
